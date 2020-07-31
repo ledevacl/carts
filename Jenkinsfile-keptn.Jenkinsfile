@@ -22,7 +22,7 @@ pipeline {
     stage('Keptn Init') {
       steps{
         script {
-          keptn.keptnInit project:"sockshop-qg", service:"carts", stage:"hardening", monitoring: "dynatrace", shipyard:'../carts/keptn/carts-shipyard.yaml'
+          keptn.keptnInit project:"sockshop-qg", service:"carts", stage:"hardening", monitoring: "dynatrace", shipyard:'keptn/carts-shipyard.yaml'
         }
       }
     }
