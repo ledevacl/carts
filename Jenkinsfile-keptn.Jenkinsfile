@@ -19,7 +19,7 @@ pipeline {
     stage('Keptn Init') {
       steps{
         script {
-          keptn.keptnInit project:"${KEPTN_PROJECT}", service:"${KEPTN_SERVICE}", stage:"${KEPTN_STAGE}", monitoring: "{KEPTN_MONITORING}", shipyard: $KEPTN_SHIPYARD
+          keptn.keptnInit project:"${KEPTN_PROJECT}", service:"${KEPTN_SERVICE}", stage:"${KEPTN_STAGE}", monitoring: "{KEPTN_MONITORING}", shipyard: '$KEPTN_SHIPYARD'
         }
       }
     }
