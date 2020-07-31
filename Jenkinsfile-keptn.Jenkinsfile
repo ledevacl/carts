@@ -1,5 +1,5 @@
-@Library('dynatrace@master') _
-@Library('keptn-library@master') _
+@Library('dynatrace@master')
+@Library('keptn-library@1.0')
 import sh.keptn.Keptn
 def keptn = new sh.keptn.Keptn()
 import groovy.json.JsonSlurper
