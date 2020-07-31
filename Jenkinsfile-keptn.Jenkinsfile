@@ -10,7 +10,7 @@ pipeline {
   environment {
     KEPTN_PROJECT = "pantry"
     KEPTN_SERVICE = "stockout"
-    KEPTN_STAGE = "preprod"
+    KEPTN_STAGE = "PreProduction"
     KEPTN_MONITORING = "dynatrace"
   }
   stages {
@@ -18,7 +18,7 @@ pipeline {
     stage('Keptn Init') {
       steps{
         script {
-          keptn.keptnInit project:"${KEPTN_PROJECT}", stage:"${KEPTN_STAGE}", monitoring:"{KEPTN_MONITORING}", shipyard:'keptn/carts-shipyard.yaml'
+          keptn.keptnInit project:"${KEPTN_PROJECT}", service:"${KEPTN_SERVICE}", stage:"${KEPTN_STAGE}", monitoring:"{KEPTN_MONITORING}", shipyard:'keptn/carts-shipyard.yaml'
         }
       }
     }
