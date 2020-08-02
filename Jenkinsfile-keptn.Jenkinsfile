@@ -4,7 +4,9 @@ import sh.keptn.Keptn
 def keptn = new sh.keptn.Keptn()
 
 pipeline {
-  agent any
+  agent {
+    label 'kubegit'
+  }
   environment {
     KEPTN_PROJECT = "pantry"
     KEPTN_SERVICE = "stockout"
