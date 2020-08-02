@@ -19,6 +19,8 @@ pipeline {
       steps{
         script {
           keptn.keptnInit project:"${KEPTN_PROJECT}", service:"${KEPTN_SERVICE}", stage:"${KEPTN_STAGE}", monitoring:"{KEPTN_MONITORING}", shipyard:'keptn/carts-shipyard.yaml'
+          echo "${createProjectBody}"
+          echo "${shipyardBase64Encoded}"
         }
       }
     }
