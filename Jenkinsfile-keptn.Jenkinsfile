@@ -10,7 +10,7 @@ pipeline {
   environment {
     KEPTN_PROJECT = "pantry"
     KEPTN_SERVICE = "stockout"
-    KEPTN_STAGE = "PreProduction"
+    KEPTN_STAGE = "preproduction"
     KEPTN_MONITORING = "dynatrace"
   }
   stages {
