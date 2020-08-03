@@ -1,2 +1,3 @@
 stages:
-  - name: "hardening"
+  - name: "preproduction"
+  - name: "production"
