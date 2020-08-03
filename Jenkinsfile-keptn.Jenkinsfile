@@ -30,7 +30,6 @@ pipeline {
     stage('Run Performance Test') {
       steps {
         script {
-            env.testStartTime = get_timestamp()
             keptn.markEvaluationStartTime
         }
         //script{
