@@ -37,7 +37,8 @@ pipeline {
           build job: 'sockshop/carts.performance/master', wait:true
         //}
         script{
-          env.testEndTime = get_timestamp()
+          def keptnContext = keptn.sendStartEvaluationEvent starttime:"", endtime:"" 
+          echo "Open Keptns Bridge: ${keptn_bridge}/trace/${keptnContext}"
         }
       }
     }
