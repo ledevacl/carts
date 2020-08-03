@@ -22,21 +22,16 @@ pipeline {
           keptn.keptnInit project:"${KEPTN_PROJECT}", service:"${KEPTN_SERVICE}", stage:"${KEPTN_STAGE}", monitoring:"${KEPTN_MONITORING}", shipyard: "${KEPTN_SHIPYARD}"
           keptn.keptnAddResources('keptn/carts-sli.yaml','dynatrace/sli.yaml')
           keptn.keptnAddResources('keptn/carts-slo.yaml','slo.yaml')
-          keptn.keptnAddResources('keptn/dynatrace.conf.yaml','dynatrace/dynatrace.conf.yaml')
-
-          keptn.markEvaluationStartTime
+          keptn.keptnAddResources('keptn/dynatrace.conf.yaml','dynatrace/dynatrace.conf.yaml')          
         }
       }
     }
 
     stage('Run Performance Test') {
       steps {
-        //script {
-            //keptn.markEvaluationStartTime
-        //}
-        //script{
+        script{
           build job: 'sockshop/carts.performance/master', wait:true
-        //}
+        }
         script{
           def keptnContext = keptn.sendStartEvaluationEvent starttime:"", endtime:"" 
           echo "Open Keptns Bridge: ${keptn_bridge}/trace/${keptnContext}"
