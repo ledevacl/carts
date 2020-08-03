@@ -30,11 +30,15 @@ pipeline {
     stage('Run Performance Test') {
       steps {
         script {
+            env.testStartTime = get_timestamp()
             keptn.markEvaluationStartTime
         }
         //script{
           build job: 'sockshop/carts.performance/master', wait:true
         //}
+        script {
+          env.testEndTime = get_timestamp()
+        }
         script{
           def keptnContext = keptn.sendStartEvaluationEvent starttime:"", endtime:"" 
           echo "Open Keptns Bridge: ${keptn_bridge}/trace/${keptnContext}"
@@ -44,3 +48,10 @@ pipeline {
 
   } // end stages
 } // end pipeline
+def get_timestamp(){
+    DATE_TAG = java.time.LocalDate.now()
+    DATETIME_TAG = java.time.LocalDateTime.now()
+    echo "${DATETIME_TAG}"
+                
+    return DATETIME_TAG
+}
