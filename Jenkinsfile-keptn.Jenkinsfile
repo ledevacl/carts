@@ -30,7 +30,7 @@ pipeline {
     stage('Run Performance Test') {
       steps {
         script{
-          build job: 'sockshop/carts.performance/master', wait:true
+          build job: 'carts.performance', wait:true
         }
         script{
           def keptnContext = keptn.sendStartEvaluationEvent starttime:"", endtime:"" 
