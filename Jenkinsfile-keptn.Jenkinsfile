@@ -1,5 +1,5 @@
 @Library('dynatrace@master')
-@Library('keptn-library@3.2')
+@Library('keptn-library@master')
 import sh.keptn.Keptn
 def keptn = new sh.keptn.Keptn()
 
