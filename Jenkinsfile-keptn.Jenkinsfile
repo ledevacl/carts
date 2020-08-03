@@ -12,7 +12,7 @@ pipeline {
     KEPTN_SERVICE = "stockout"
     KEPTN_STAGE = "preproduction"
     KEPTN_MONITORING = "dynatrace"
-    KEPTN_SHIPYARD:'keptn/carts-shipyard.yaml'
+    KEPTN_SHIPYARD = "keptn/carts-shipyard.yaml"
   }
   stages {
     
@@ -41,6 +41,6 @@ pipeline {
         }
       }
     }
-    
+
   } // end stages
 } // end pipeline
