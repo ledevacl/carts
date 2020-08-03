@@ -23,6 +23,8 @@ pipeline {
           keptn.keptnAddResources('keptn/carts-sli.yaml','dynatrace/sli.yaml')
           keptn.keptnAddResources('keptn/carts-slo.yaml','slo.yaml')
           keptn.keptnAddResources('keptn/dynatrace.conf.yaml','dynatrace/dynatrace.conf.yaml')
+
+          keptn.markEvaluationStartTime
         }
       }
     }
@@ -30,7 +32,7 @@ pipeline {
     stage('Run Performance Test') {
       steps {
         script {
-            keptn.markEvaluationStartTime
+            //keptn.markEvaluationStartTime
         }
         //script{
           build job: 'sockshop/carts.performance/master', wait:true
