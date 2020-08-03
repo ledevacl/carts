@@ -31,9 +31,9 @@ pipeline {
 
     stage('Run Performance Test') {
       steps {
-        script {
+        //script {
             //keptn.markEvaluationStartTime
-        }
+        //}
         //script{
           build job: 'sockshop/carts.performance/master', wait:true
         //}
