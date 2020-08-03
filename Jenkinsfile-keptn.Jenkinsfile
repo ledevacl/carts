@@ -19,7 +19,7 @@ pipeline {
     stage('Keptn Init') {
       steps{
         script {
-          keptn.keptnInit project:"${KEPTN_PROJECT}", service:"${KEPTN_SERVICE}", stage:"${KEPTN_STAGE}", monitoring:"${KEPTN_MONITORING}", shipyard:'"${KEPTN_SHIPYARD}"'
+          keptn.keptnInit project:"${KEPTN_PROJECT}", service:"${KEPTN_SERVICE}", stage:"${KEPTN_STAGE}", monitoring:"${KEPTN_MONITORING}", shipyard: ${env.KEPTN_SHIPYARD}
           keptn.keptnAddResources('keptn/carts-sli.yaml','dynatrace/sli.yaml')
           keptn.keptnAddResources('keptn/carts-slo.yaml','slo.yaml')
           keptn.keptnAddResources('keptn/dynatrace.conf.yaml','dynatrace/dynatrace.conf.yaml')
