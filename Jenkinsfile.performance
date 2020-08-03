@@ -1,3 +1,5 @@
+@Library('dynatrace@master')
+
 pipeline {
   agent {
     label 'git'
