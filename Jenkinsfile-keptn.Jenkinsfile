@@ -33,7 +33,7 @@ pipeline {
     stage('Mark start time') {
       steps {
         script {
-            keptn.markEvaluationStartTime()
+            keptn.markEvaluationStartTime
         }
       }
     }
