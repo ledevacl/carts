@@ -31,6 +31,8 @@ pipeline {
       steps {
         script {
             keptn.markEvaluationStartTime
+            def keptnContext = keptn.sendStartEvaluationEvent starttime:"", endtime:"" 
+            echo "Open Keptns Bridge: ${keptn_bridge}/trace/${keptnContext}"
         }
       }
     }
