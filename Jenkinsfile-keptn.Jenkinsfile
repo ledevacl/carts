@@ -30,14 +30,6 @@ pipeline {
       }
     }
 
-    stage('Mark start time') {
-      steps {
-        script {
-            keptn.markEvaluationStartTime
-        }
-      }
-    }
-
     stage('Run Performance Test') {
       steps {
         script{
