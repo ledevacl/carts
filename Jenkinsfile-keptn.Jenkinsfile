@@ -2,9 +2,6 @@
 @Library('keptn-library@master')
 import sh.keptn.Keptn
 def keptn = new sh.keptn.Keptn()
-import groovy.json.JsonSlurper
-import groovy.json.JsonSlurperClassic
-
 
 pipeline {
   agent {
