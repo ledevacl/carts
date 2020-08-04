@@ -48,7 +48,7 @@ pipeline {
     stage('Pipeline Quality Gate') {
       steps {    
         script {
-          def result = keptn.waitForEvaluationDoneEvent setBuildResult:true, waitTime:"waitTime"
+          def result = keptn.waitForEvaluationDoneEvent setBuildResult:true, waitTime:waitTime
           echo "${result}"
         }
       }
