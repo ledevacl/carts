@@ -32,6 +32,7 @@ pipeline {
     stage('mark start') {
       steps {
         script {
+            env.testStartTime = get_timestamp()
             keptn.markEvaluationStartTime
         }
       }
@@ -51,3 +52,10 @@ pipeline {
 
   } // end stages
 } // end pipeline
+def get_timestamp(){
+    DATE_TAG = java.time.LocalDate.now()
+    DATETIME_TAG = java.time.LocalDateTime.now()
+    echo "${DATETIME_TAG}"
+                
+    return DATETIME_TAG
+}
