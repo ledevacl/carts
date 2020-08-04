@@ -29,16 +29,12 @@ pipeline {
         }
       }
     }
-    stage('mark start') {
+
+    stage('Run Performance Test') {
       steps {
         script {
             keptn.markEvaluationStartTime()
         }
-      }
-    }
-
-    stage('Run Performance Test') {
-      steps {
         script{
           build job: 'carts.performance', wait:true
         }
@@ -48,6 +44,15 @@ pipeline {
         }
       }
     }
+
+    stage('Pipeline Quality Gate') {
+      steps {    
+        script {
+          def result = keptn.waitForEvaluationDoneEvent setBuildResult:true, waitTime:waitTime
+          echo "${result}"
+        }
+      }
+    }// end stage
 
   } // end stages
 } // end pipeline
