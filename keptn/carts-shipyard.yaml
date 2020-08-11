@@ -1,3 +1,3 @@
 stages:
-  - name: "preproduction"
-  - name: "production"
+  - name: "dev"
+  - name: "staging"
