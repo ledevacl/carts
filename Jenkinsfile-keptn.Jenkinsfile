@@ -7,12 +7,18 @@ pipeline {
   agent {
     label 'kubegit'
   }
+  parameters {
+    string(name: 'KEPTN_PROJECT', defaultValue: 'sockshop', description: 'The name of the service to deploy.', trim: true)
+    string(name: 'KEPTN_SERVICE', defaultValue: 'carts', description: 'The image of the service to deploy.', trim: true)
+    string(name: 'KEPTN_STAGE', defaultValue: 'env', description: 'The version of the service to deploy.', trim: true)
+    string(name: 'KEPTN_MONITORING', defaultValue: 'dynatrace', description: 'Custom properties to be supplied to Dynatrace.', trim: true)
+    string(name: 'KEPTN_DIR', defaultValue: 'keptn/', description: 'keptn shipyard file location')
+  }
   environment {
-    KEPTN_PROJECT = "sockshop"
-    KEPTN_SERVICE = "carts"
-    KEPTN_STAGE = "dev"
-    KEPTN_MONITORING = "dynatrace"
-    KEPTN_SHIPYARD = "keptn/carts-shipyard.yaml"
+    KEPTN_SHIPYARD = "${KEPTN_PROJECT}${KEPTN_SERVICE}-shipyard.yaml"
+    KEPTN_SLO = "${KEPTN_PROJECT}${KEPTN_SERVICE}-sli.yaml"
+    KEPTN_SLI = "${KEPTN_PROJECT}${KEPTN_SERVICE}-slo.yaml"
+    KEPTN_DT_CONF = "${KEPTN_PROJECT}${KEPTN_MONITORING}.conf.yaml"
   }
   stages {
     
@@ -20,9 +26,9 @@ pipeline {
       steps{
         script {
           keptn.keptnInit project:"${KEPTN_PROJECT}", service:"${KEPTN_SERVICE}", stage:"${KEPTN_STAGE}", monitoring:"${KEPTN_MONITORING}", shipyard: "${KEPTN_SHIPYARD}"
-          keptn.keptnAddResources('keptn/carts-sli.yaml','dynatrace/sli.yaml')
-          keptn.keptnAddResources('keptn/carts-slo.yaml','slo.yaml')
-          keptn.keptnAddResources('keptn/dynatrace.conf.yaml','dynatrace/dynatrace.conf.yaml')          
+          keptn.keptnAddResources("${KEPTN_SLI}",'dynatrace/sli.yaml')
+          keptn.keptnAddResources("${KEPTN_SLO}",'slo.yaml')
+          keptn.keptnAddResources("${KEPTN_DT_CONF}",'dynatrace/dynatrace.conf.yaml')          
         }
       }
     }
