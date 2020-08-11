@@ -8,9 +8,9 @@ pipeline {
     label 'kubegit'
   }
   environment {
-    KEPTN_PROJECT = "pantry"
-    KEPTN_SERVICE = "stockout"
-    KEPTN_STAGE = "preproduction"
+    KEPTN_PROJECT = "sockshop"
+    KEPTN_SERVICE = "carts"
+    KEPTN_STAGE = "dev"
     KEPTN_MONITORING = "dynatrace"
     KEPTN_SHIPYARD = "keptn/carts-shipyard.yaml"
   }
