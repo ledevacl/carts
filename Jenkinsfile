@@ -149,7 +149,7 @@ pipeline {
             string(name: 'KEPTN_PROJECT', value: 'sockshop'),
             string(name: 'KEPTN_SERVICE', value: "${env.APP_NAME}"),
             string(name: 'KEPTN_STAGE', value: 'dev'),
-            string(name: 'KEPTN_MONITORING', value: 'dynatrace')
+            string(name: 'KEPTN_MONITORING', value: 'dynatrace'),
             string(name: 'KEPTN_DIR', value: 'keptn/')
           ]
       }
