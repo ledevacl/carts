@@ -10,15 +10,15 @@ pipeline {
   parameters {
     string(name: 'KEPTN_PROJECT', defaultValue: 'sockshop', description: 'The name of the application.', trim: true)
     string(name: 'KEPTN_SERVICE', defaultValue: 'carts', description: 'The name of the service', trim: true)
-    string(name: 'KEPTN_STAGE', defaultValue: 'env', description: 'The version of the environment.', trim: true)
+    string(name: 'KEPTN_STAGE', defaultValue: 'dev', description: 'The name of the environment.', trim: true)
     string(name: 'KEPTN_MONITORING', defaultValue: 'dynatrace', description: 'Name of monitoring provider.', trim: true)
     string(name: 'KEPTN_DIR', defaultValue: 'keptn/', description: 'keptn shipyard file location')
   }
   environment {
-    KEPTN_SHIPYARD = "${KEPTN_PROJECT}${KEPTN_SERVICE}-shipyard.yaml"
-    KEPTN_SLO = "${KEPTN_PROJECT}${KEPTN_SERVICE}-sli.yaml"
-    KEPTN_SLI = "${KEPTN_PROJECT}${KEPTN_SERVICE}-slo.yaml"
-    KEPTN_DT_CONF = "${KEPTN_PROJECT}${KEPTN_MONITORING}.conf.yaml"
+    KEPTN_SHIPYARD = "${KEPTN_DIR}${KEPTN_SERVICE}-shipyard.yaml"
+    KEPTN_SLO = "${KEPTN_DIR}${KEPTN_SERVICE}-sli.yaml"
+    KEPTN_SLI = "${KEPTN_DIR}${KEPTN_SERVICE}-slo.yaml"
+    KEPTN_DT_CONF = "${KEPTN_DIR}${KEPTN_MONITORING}.conf.yaml"
   }
   stages {
     stage('Keptn Init') {
