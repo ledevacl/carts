@@ -144,7 +144,7 @@ pipeline {
     }
     stage('Performance evaluation') {
       steps {
-        build job: "carts.performance-keptn", wait:true
+        build job: "sockshop/carts.performance-keptn", wait:true,
           parameters: [
             string(name: 'KEPTN_PROJECT', value: 'sockshop'),
             string(name: 'KEPTN_SERVICE', value: "${env.APP_NAME}"),
