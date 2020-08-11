@@ -16,9 +16,10 @@ pipeline {
   }
   environment {
     KEPTN_SHIPYARD = "${KEPTN_DIR}${KEPTN_SERVICE}-shipyard.yaml"
-    KEPTN_SLO = "${KEPTN_DIR}${KEPTN_SERVICE}-sli.yaml"
-    KEPTN_SLI = "${KEPTN_DIR}${KEPTN_SERVICE}-slo.yaml"
+    KEPTN_SLI = "${KEPTN_DIR}${KEPTN_SERVICE}-sli.yaml"
+    KEPTN_SLO = "${KEPTN_DIR}${KEPTN_SERVICE}-slo.yaml"
     KEPTN_DT_CONF = "${KEPTN_DIR}${KEPTN_MONITORING}.conf.yaml"
+    LOAD_TEST_JOB = "${KEPTN_SERVICE}.performance"
   }
   stages {
     stage('Keptn Init') {
@@ -38,7 +39,7 @@ pipeline {
             keptn.markEvaluationStartTime()
         }
         script{
-          build job: 'carts.performance', wait:true
+          build job: "${LOAD_TEST_JOB}", wait:true
         }
         script{
           def keptnContext = keptn.sendStartEvaluationEvent starttime:"", endtime:"" 
@@ -48,7 +49,7 @@ pipeline {
     }
 
     stage('Pipeline Quality Gate') {
-      steps {    
+      steps {
         script {
           def result = keptn.waitForEvaluationDoneEvent setBuildResult:true, waitTime:'3'
           echo "${result}"
