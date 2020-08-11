@@ -8,10 +8,10 @@ pipeline {
     label 'kubegit'
   }
   parameters {
-    string(name: 'KEPTN_PROJECT', defaultValue: 'sockshop', description: 'The name of the service to deploy.', trim: true)
-    string(name: 'KEPTN_SERVICE', defaultValue: 'carts', description: 'The image of the service to deploy.', trim: true)
-    string(name: 'KEPTN_STAGE', defaultValue: 'env', description: 'The version of the service to deploy.', trim: true)
-    string(name: 'KEPTN_MONITORING', defaultValue: 'dynatrace', description: 'Custom properties to be supplied to Dynatrace.', trim: true)
+    string(name: 'KEPTN_PROJECT', defaultValue: 'sockshop', description: 'The name of the application.', trim: true)
+    string(name: 'KEPTN_SERVICE', defaultValue: 'carts', description: 'The name of the service', trim: true)
+    string(name: 'KEPTN_STAGE', defaultValue: 'env', description: 'The version of the environment.', trim: true)
+    string(name: 'KEPTN_MONITORING', defaultValue: 'dynatrace', description: 'Name of monitoring provider.', trim: true)
     string(name: 'KEPTN_DIR', defaultValue: 'keptn/', description: 'keptn shipyard file location')
   }
   environment {
@@ -21,7 +21,6 @@ pipeline {
     KEPTN_DT_CONF = "${KEPTN_PROJECT}${KEPTN_MONITORING}.conf.yaml"
   }
   stages {
-    
     stage('Keptn Init') {
       steps{
         script {
