@@ -4,7 +4,7 @@
 //import sh.keptn.Keptn
 //def keptn = new sh.keptn.Keptn()
 def keptn_lib
-keptn_lib = load Keptn.groovy
+keptn_lib = load 'Keptn.groovy'
 keptn_lib.keptnInit()
 
 pipeline {
