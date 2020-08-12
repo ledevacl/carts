@@ -5,7 +5,7 @@
 //def keptn = new sh.keptn.Keptn()
 def keptn_lib
 keptn_lib = load 'Keptn.groovy'
-import sh.keptn.Keptn
+import keptn_lib.sh.keptn.Keptn
 
 pipeline {
   agent {
