@@ -3,12 +3,16 @@
 //@Library('keptn-library@master')
 //import sh.keptn.Keptn
 //def keptn = new sh.keptn.Keptn()
-def keptn = load 'Keptn.groovy'
+
 
 pipeline {
   agent {
     label 'kubegit'
   }
+        script {
+                def keptn = load("${env.WORKSPACE}/Keptn.groovy")
+                keptn.keptnInit()
+               }
   parameters {
     string(name: 'KEPTN_PROJECT', defaultValue: 'sockshop', description: 'The name of the application.', trim: true)
     string(name: 'KEPTN_SERVICE', defaultValue: 'carts', description: 'The name of the service', trim: true)
