@@ -9,10 +9,6 @@ pipeline {
   agent {
     label 'kubegit'
   }
-        script {
-                def keptn = load("${env.WORKSPACE}/Keptn.groovy")
-                keptn.keptnInit()
-               }
   parameters {
     string(name: 'KEPTN_PROJECT', defaultValue: 'sockshop', description: 'The name of the application.', trim: true)
     string(name: 'KEPTN_SERVICE', defaultValue: 'carts', description: 'The name of the service', trim: true)
@@ -30,6 +26,9 @@ pipeline {
   stages {
     stage('Keptn Init') {
       steps{
+        script {
+          def keptn = load("${env.WORKSPACE}/Keptn.groovy")
+        }
         script {
           keptn.keptnInit project:"${KEPTN_PROJECT}", service:"${KEPTN_SERVICE}", stage:"${KEPTN_STAGE}", monitoring:"${KEPTN_MONITORING}", shipyard: "${KEPTN_SHIPYARD}"
           keptn.keptnAddResources("${KEPTN_SLI}",'dynatrace/sli.yaml')
