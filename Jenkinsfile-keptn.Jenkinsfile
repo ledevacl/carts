@@ -4,7 +4,7 @@
 //import sh.keptn.Keptn
 //def keptn = new sh.keptn.Keptn()
 
-def keptn = load("Keptn.groovy")
+
 
 
 pipeline {
@@ -29,6 +29,7 @@ pipeline {
     stage('Keptn Init') {
       steps{
         script {
+          def keptn = load("Keptn.groovy")
           keptn.keptnInit project:"${KEPTN_PROJECT}", service:"${KEPTN_SERVICE}", stage:"${KEPTN_STAGE}", monitoring:"${KEPTN_MONITORING}", shipyard: "${KEPTN_SHIPYARD}"
           keptn.keptnAddResources("${KEPTN_SLI}",'dynatrace/sli.yaml')
           keptn.keptnAddResources("${KEPTN_SLO}",'slo.yaml')
