@@ -24,7 +24,7 @@ pipeline {
     LOAD_TEST_JOB = "${KEPTN_SERVICE}.performance"
   }
   stages {
-    stage('Load groovy script') {
+    stage('Load keptn-library') {
       steps{
         script {
           keptn = load("Keptn.groovy")
