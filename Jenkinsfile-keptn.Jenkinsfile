@@ -4,7 +4,7 @@
 //import sh.keptn.Keptn
 //def keptn = new sh.keptn.Keptn()
 
-def keptn = load("${env.WORKSPACE}/Keptn.groovy")
+def keptn = load("Keptn.groovy")
 
 
 pipeline {
