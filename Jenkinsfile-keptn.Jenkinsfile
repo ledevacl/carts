@@ -3,6 +3,7 @@
 //@Library('keptn-library@master')
 //import sh.keptn.Keptn
 //def keptn = new sh.keptn.Keptn()
+def keptn
 
 pipeline {
   agent {
@@ -26,11 +27,11 @@ pipeline {
     stage('Load groovy script') {
       steps{
         script {
-          def keptn = load("Keptn.groovy")
+          keptn = load("Keptn.groovy")
         }
       }
     } 
-    
+
     stage('Keptn Init') {
       steps{
         script {
