@@ -3,9 +3,7 @@
 //@Library('keptn-library@master')
 //import sh.keptn.Keptn
 //def keptn = new sh.keptn.Keptn()
-def keptn_lib
-keptn_lib = load 'Keptn.groovy'
-keptn_lib.keptnInit()
+def keptn = load 'Keptn.groovy'
 
 pipeline {
   agent {
