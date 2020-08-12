@@ -4,12 +4,12 @@
 //import sh.keptn.Keptn
 //def keptn = new sh.keptn.Keptn()
 
-
-
-
+node{
+def keptn = load("Keptn.groovy")
 pipeline {
   agent {
     label 'kubegit'
+ 
   }
   parameters {
     string(name: 'KEPTN_PROJECT', defaultValue: 'sockshop', description: 'The name of the application.', trim: true)
@@ -29,7 +29,6 @@ pipeline {
     stage('Keptn Init') {
       steps{
         script {
-          def keptn = load("Keptn.groovy")
           keptn.keptnInit project:"${KEPTN_PROJECT}", service:"${KEPTN_SERVICE}", stage:"${KEPTN_STAGE}", monitoring:"${KEPTN_MONITORING}", shipyard: "${KEPTN_SHIPYARD}"
           keptn.keptnAddResources("${KEPTN_SLI}",'dynatrace/sli.yaml')
           keptn.keptnAddResources("${KEPTN_SLO}",'slo.yaml')
@@ -64,3 +63,4 @@ pipeline {
 
   } // end stages
 } // end pipeline
+}
