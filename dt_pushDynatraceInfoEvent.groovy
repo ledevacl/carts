@@ -41,12 +41,13 @@ def postCustomInfoEvent = httpRequest contentType: 'APPLICATION_JSON',
     url: "${dtTenantUrl }/api/v1/events",
     validResponseCodes: "100:404",
     ignoreSslErrors: true
-       if (postCustomInfoEvent.status == 200) {
-            echo "Pushed custom info event to dynatrace: ${project}"
-        } else {
-            echo "Couldn't push custom info event to dynatrace " + createProjectResponse.content          
-        }
-    
+
+    if (postCustomInfoEvent.status == 200) {
+        echo "Pushed custom info event to dynatrace: ${project}"
+    } else {
+        echo "Couldn't push custom info event to dynatrace " + createProjectResponse.content          
+    }
+
 
   return 0
 }
