@@ -1,9 +1,4 @@
-@Grab('org.codehaus.groovy.modules.http-builder:http-builder:0.7' )
 
-import groovyx.net.http.HTTPBuilder
-import groovy.json.JsonOutput
-import static groovyx.net.http.Method.*
-import static groovyx.net.http.ContentType.*
 
 /***************************\
   This function assumes we run on a standard Jenkins Agent.
