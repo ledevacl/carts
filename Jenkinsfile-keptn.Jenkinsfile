@@ -27,8 +27,8 @@ pipeline {
     JMETER_LOOPCOUNT = 4000
   }
 
-/* 
   stages {
+    /* 
     stage('Load keptn/dt libraries') {
       steps{
         script {
