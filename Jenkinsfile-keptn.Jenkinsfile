@@ -4,6 +4,7 @@
 //import sh.keptn.Keptn
 //def keptn = new sh.keptn.Keptn()
 def keptn
+def dynatrace_custom_info
 
 pipeline {
   agent {
@@ -22,12 +23,15 @@ pipeline {
     KEPTN_SLO = "${KEPTN_DIR}${KEPTN_SERVICE}-slo.yaml"
     KEPTN_DT_CONF = "${KEPTN_DIR}${KEPTN_MONITORING}.conf.yaml"
     LOAD_TEST_JOB = "${KEPTN_SERVICE}.performance"
+    JMETER_VUCOUNT = 1
+    JMETER_LOOPCOUNT = 4000
   }
   stages {
-    stage('Load keptn-library') {
+    stage('Load keptn/dt libraries') {
       steps{
         script {
           keptn = load("Keptn.groovy")
+          dynatrace_custom_info = load("dt_pushDynatraceInfoEvent.groovy")
         }
       }
     } 
@@ -43,6 +47,30 @@ pipeline {
         }
       }
     }
+
+    stage('Send Test Start to DT') {
+      steps {
+        container("curl") {
+          script {
+      
+              def tagMatchRules = [[ meTypes: [[meType: 'SERVICE']],
+                                        tags : [[context: 'CONTEXTLESS', key: 'keptn_project', value: KEPTN_PROJECT],
+                                                [context: 'CONTEXTLESS', key: 'keptn_service', value: KEPTN_SERVICE],
+                                                [context: 'CONTEXTLESS', key: 'keptn_stage', value: KEPTN_STAGE]]
+                                  ]];
+              // Push some Jenkins OOTB info to DT.
+              def customProps = [ 
+                  "Test Type": "Load",
+                  "Test Provider": "Jmeter",
+                  "Test Parameters": "[vuCount: ${env.JMETER_VUCOUNT}] [loopCount: ${env.JMETER_LOOPCOUNT}]"
+              ];
+              
+              def notification = new pushDynatraceInfoEvent();
+              notification.call(title: "Test Start on ${env.KEPTN_PROJECT}/${env.KEPTN_SERVICE}", source: 'Jenkins', description: 'Starting load test.', tagRule: tagMatchRules, customProperties: customProps);
+          }
+        }
+      } //end steps
+    } // end stage
 
     stage('Run Performance Test') {
       steps {
