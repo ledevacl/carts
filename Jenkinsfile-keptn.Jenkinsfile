@@ -65,7 +65,7 @@ pipeline {
                     "Test Parameters": "[vuCount: ${env.JMETER_VUCOUNT}] [loopCount: ${env.JMETER_LOOPCOUNT}]"
                 ];
                 
-                def notification = new dynatrace_custom_info.postCustomInfoEvent();
+                def notification = new dynatrace_custom_info.pushDynatraceInfoEvent();
                 notification.call(title: "Test Start on ${env.KEPTN_PROJECT}/${env.KEPTN_SERVICE}", source: 'Jenkins', description: 'Starting load test.', tagRule: tagMatchRules, customProperties: customProps);
             }
           }
