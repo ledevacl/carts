@@ -107,6 +107,14 @@ spec:
               memory: "256Mi"
               cpu: "200m"
           env:
+            - name: http_proxy
+              value: http://proxy.ops.tiaa-cref.org:8080
+            - name: https_proxy
+              value: http://proxy.ops.tiaa-cref.org:8080
+            - name: ftp_proxy
+              value: http://proxy.ops.tiaa-cref.org:8080
+            - name: no_proxy
+              value: localhost,127.0.0.1,.ops.tiaa-cref.org,.tiaa-cref.org
             - name: API_WEBSOCKET_URL
               value: 'ws://api-service:8080/websocket'
             - name: EVENTBROKER
