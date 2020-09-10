@@ -59,14 +59,17 @@ pipeline {
     stage('Send Test Start to DT') {
       steps {
         container("curl") {
-          script {
-            def customProps = [ 
-                "Test Type": "Load",
-                "Test Provider": "Jmeter",
-                "Test Parameters": "[vuCount: ${env.JMETER_VUCOUNT}] [loopCount: ${env.JMETER_LOOPCOUNT}]"
-            ];
-            
-            dynatrace.dynatracePushCustomInfoEvent title: "Test Start on ${env.KEPTN_PROJECT}/${env.KEPTN_SERVICE}", source: 'Jenkins', description: 'Starting load test.', tagRule: "${tagMatchRules}", customProperties: "${customProps}"
+          script{
+            dynatrace.dynatracePushCustomInfoEvent (
+              title: "Test Start on ${env.KEPTN_PROJECT}/${env.KEPTN_SERVICE}", 
+              source: 'Jenkins', description: 'Starting load test.', 
+              tagRule: "${tagMatchRules}", 
+              customProperties: [ 
+                    "Test Type": "Load",
+                    "Test Provider": "Jmeter",
+                    "Test Parameters": "[vuCount: ${env.JMETER_VUCOUNT}] [loopCount: ${env.JMETER_LOOPCOUNT}]"
+                ];
+            )
           }
         }
       }
