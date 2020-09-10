@@ -1,6 +1,6 @@
-//package dynatrace
+package dynatrace
 
-def dynatracePushCustomInfoEvent (Map args){
+def dynatracePushCustomInfoEvent(Map args){
   // check input arguments
   String dtTenantUrl = args.containsKey("dtTenantUrl") ? args.dtTenantUrl : "${DT_TENANT_URL}"
   String dtApiToken = args.containsKey("dtApiToken") ? args.dtApiToken : "${DT_API_TOKEN}"
@@ -52,7 +52,7 @@ def createEventResponse = httpRequest contentType: 'APPLICATION_JSON',
 
 }
 
-def dynatracePushDeployEvent (Map args){
+def dynatracePushDeployEvent(Map args){
   String dtTenantUrl = args.containsKey("dtTenantUrl") ? args.dtTenantUrl : "${DT_TENANT_URL}"
   String dtApiToken = args.containsKey("dtApiToken") ? args.dtApiToken : "${DT_API_TOKEN}"
   def tagRule = args.containsKey("tagRule") ? args.tagRule : ""
