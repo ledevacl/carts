@@ -28,8 +28,8 @@ def createEventBody = """{
     "attachRules": {
         "tagRule": "${tagRule}"
         },
-    "description: "${deploymentName}",
-    "title": "${deploymentVersion}",
+    "description: "${description}",
+    "title": "${title}",
     "source": "${source}"
     "customProperties": "${customProperties}"
 }"""
