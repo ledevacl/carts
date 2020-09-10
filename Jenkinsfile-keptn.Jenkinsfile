@@ -60,7 +60,7 @@ pipeline {
       steps {
         container("curl") {
           script{
-            dynatrace.dynatracePushCustomInfoEvent (
+            def status = dynatrace.dynatracePushCustomInfoEvent (
               title: "Test Start on ${env.KEPTN_PROJECT}/${env.KEPTN_SERVICE}", 
               source: 'Jenkins', 
               description: 'Starting load test.', 
