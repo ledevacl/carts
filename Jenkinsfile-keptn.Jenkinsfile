@@ -6,6 +6,13 @@
 def keptn
 def dynatrace
 
+def tagMatchRules = [
+  [ meTypes: [[meType: 'SERVICE']],
+      tags : [[context: 'CONTEXTLESS', key: 'keptn_project', value: KEPTN_PROJECT],
+              [context: 'CONTEXTLESS', key: 'keptn_service', value: KEPTN_SERVICE],
+              [context: 'CONTEXTLESS', key: 'keptn_stage', value: KEPTN_STAGE]]
+  ]];
+
 pipeline {
   agent {
     label 'kubegit'
@@ -26,13 +33,6 @@ pipeline {
     JMETER_VUCOUNT = 1
     JMETER_LOOPCOUNT = 4000
   }
-
-tagMatchRules = [
-  [ meTypes: [[meType: 'SERVICE']],
-      tags : [[context: 'CONTEXTLESS', key: 'keptn_project', value: KEPTN_PROJECT],
-              [context: 'CONTEXTLESS', key: 'keptn_service', value: KEPTN_SERVICE],
-              [context: 'CONTEXTLESS', key: 'keptn_stage', value: KEPTN_STAGE]]
-  ]];
 
   stages {
     
