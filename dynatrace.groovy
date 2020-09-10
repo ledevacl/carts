@@ -47,7 +47,8 @@ def dynatracePushCustomInfoEvent(Map args) {
         if (createEventResponse.status == 200) {
             echo "Deployment event posted successfully!"
         } else {
-            echo "Failed To post event:" + createEventResponse.content          
+            echo "Failed To post event:" + createEventResponse.content
+            echo createEventBody
         }
 
     return true
@@ -91,6 +92,7 @@ def dynatracePushDeployEvent(Map args) {
         "source": "${source}"
         "customProperties": "${customProperties}"
     }"""
+
 
     def createEventResponse = httpRequest contentType: 'APPLICATION_JSON', 
         customHeaders: [[maskValue: true, name: 'Api-Token ', value: "${dtApiToken}"]], 
