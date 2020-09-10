@@ -35,6 +35,8 @@ def dynatracePushCustomInfoEvent(Map args) {
         "customProperties": "${customProperties}"
     }"""
 
+    echo createEventBody
+
     def createEventResponse = httpRequest contentType: 'APPLICATION_JSON', 
         customHeaders: [[maskValue: true, name: 'Api-Token ', value: "${dtApiToken}"]], 
         httpMode: 'POST',
@@ -45,10 +47,9 @@ def dynatracePushCustomInfoEvent(Map args) {
         ignoreSslErrors: true
 
         if (createEventResponse.status == 200) {
-            echo "Deployment event posted successfully!"
+            echo "Custom info event posted successfully!"
         } else {
             echo "Failed To post event:" + createEventResponse.content
-            echo createEventBody
         }
 
     return true
