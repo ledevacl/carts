@@ -11,13 +11,13 @@ def dynatracePushCustomInfoEvent (Map args){
 
   def customProperties = args.containsKey("customProperties") ? args.customProperties : [ ]
 
-if ((dtTenantUrl == "") || (dtApiToken == "")) {
+if ((dtTenantUrl == "") || (dtApiToken == "") {
     echo "dynatracePushCustomInfoEvent requires dynatrace tenant URL/API token!"
     return false;
 }
 
   // check minimum required params
-  if( (description == "")) || (source == ""))  {
+  if( (description == "") || (source == "")  {
     echo "dynatracePushCustomInfoEvent requires source and description to be set. These values cant be empty!"
     return 1
   }
@@ -69,7 +69,7 @@ if ((dtTenantUrl == "") || (dtApiToken == "")) {
     return false;
 }
 
-if ((source == "") || (deploymentName == "") || (deploymentVersion == "")) {
+if ((source == "") || (deploymentName == "") || (deploymentVersion == "") {
     echo "dynatracePushDeployEvent requires source, deploymentName and deploymentVersion to be set. These values cant be empty!"
     return false;
 }
