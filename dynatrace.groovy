@@ -1,4 +1,4 @@
-package dynatrace
+//package dynatrace
 
 def dynatracePushCustomInfoEvent (Map args){
   // check input arguments
