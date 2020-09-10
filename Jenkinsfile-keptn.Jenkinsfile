@@ -35,11 +35,13 @@ pipeline {
   }
 
   stages {
-    
-    stage('Load keptn/dynatrace libraries') {
+
+    stage('Load keptn libraries') {
       steps{
         script {
           keptn = load("Keptn.groovy")
+        }
+        script {
           dynatrace = load("dynatrace.groovy")
         }
       }
