@@ -9,7 +9,7 @@ def dynatracePushCustomInfoEvent(Map args) {
     String description = args.containsKey("description") ? args.description : ""
     String title = args.containsKey("title") ? args.title : ""
     def customProperties = args.containsKey("customProperties") ? args.customProperties : [ ]
-    
+
     // check minimum required params
     if ((dtTenantUrl == "") || (dtApiToken == "")) {
         echo "dynatracePushCustomInfoEvent requires dynatrace tenant URL/API token!"
@@ -109,3 +109,5 @@ def dynatracePushDeployEvent(Map args) {
     return true
 
 }
+
+return this
