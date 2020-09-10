@@ -1,5 +1,7 @@
 //package dynatrace
 
+import groovy.json.JsonOutput
+
 def dynatracePushCustomInfoEvent(Map args) {
     // check input arguments
     String dtTenantUrl = args.containsKey("dtTenantUrl") ? args.dtTenantUrl : "${DT_TENANT_URL}"
