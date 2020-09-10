@@ -1,5 +1,4 @@
 //package dynatrace
-
 import groovy.json.JsonOutput
 
 def dynatracePushCustomInfoEvent(Map args) {
@@ -46,7 +45,7 @@ def dynatracePushCustomInfoEvent(Map args) {
         source: source,
     ]
 
-    def postBody = JsonOutput.toJson(createEventBody)
+    def postBody = new JsonOutput().toJson(createEventBody)
 
     echo postBody
 
