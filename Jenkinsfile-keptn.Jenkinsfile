@@ -27,6 +27,13 @@ pipeline {
     JMETER_LOOPCOUNT = 4000
   }
 
+tagMatchRules = [
+  [ meTypes: [[meType: 'SERVICE']],
+      tags : [[context: 'CONTEXTLESS', key: 'keptn_project', value: KEPTN_PROJECT],
+              [context: 'CONTEXTLESS', key: 'keptn_service', value: KEPTN_SERVICE],
+              [context: 'CONTEXTLESS', key: 'keptn_stage', value: KEPTN_STAGE]]
+  ]];
+
   stages {
     
     stage('Load keptn/dynatrace libraries') {
@@ -48,30 +55,23 @@ pipeline {
         }
       }
     }
-/* 
+
     stage('Send Test Start to DT') {
       steps {
         container("curl") {
           script {
-            def tagMatchRules = [[ meTypes: [[meType: 'SERVICE']],
-                                      tags : [[context: 'CONTEXTLESS', key: 'keptn_project', value: KEPTN_PROJECT],
-                                              [context: 'CONTEXTLESS', key: 'keptn_service', value: KEPTN_SERVICE],
-                                              [context: 'CONTEXTLESS', key: 'keptn_stage', value: KEPTN_STAGE]]
-                                ]];
-            // Push some Jenkins OOTB info to DT.
             def customProps = [ 
                 "Test Type": "Load",
                 "Test Provider": "Jmeter",
                 "Test Parameters": "[vuCount: ${env.JMETER_VUCOUNT}] [loopCount: ${env.JMETER_LOOPCOUNT}]"
             ];
             
-            def notification = new pushDynatraceInfoEvent();
-            notification.call(title: "Test Start on ${env.KEPTN_PROJECT}/${env.KEPTN_SERVICE}", source: 'Jenkins', description: 'Starting load test.', tagRule: tagMatchRules, customProperties: customProps);
+            dynatrace.dynatracePushCustomInfoEvent(title: "Test Start on ${env.KEPTN_PROJECT}/${env.KEPTN_SERVICE}", source: 'Jenkins', description: 'Starting load test.', tagRule: tagMatchRules, customProperties: customProps);
           }
         }
       }
     } // end stage
-    */
+
 
     stage('Run Performance Test') {
       steps {
