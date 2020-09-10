@@ -1,10 +1,10 @@
 
-@Library('dynatrace@master')
-@Library('keptn-library@master')
-import sh.keptn.Keptn
-def keptn = new sh.keptn.Keptn()
-//def keptn
-//def dynatrace_custom_info
+//@Library('dynatrace@master')
+//@Library('keptn-library@master')
+//import sh.keptn.Keptn
+//def keptn = new sh.keptn.Keptn()
+def keptn
+def dynatrace
 
 pipeline {
   agent {
@@ -28,15 +28,15 @@ pipeline {
   }
 
   stages {
-    /* 
-    stage('Load keptn/dt libraries') {
+    
+    stage('Load keptn/dynatrace libraries') {
       steps{
         script {
           keptn = load("Keptn.groovy")
-          dynatrace_custom_info = load("dt_pushDynatraceInfoEvent.groovy")
+          dynatrace = load("dynatrace.groovy")
         }
       }
-    } */
+    } 
 
     stage('Keptn Init') {
       steps{
@@ -48,7 +48,7 @@ pipeline {
         }
       }
     }
-
+/* 
     stage('Send Test Start to DT') {
       steps {
         container("curl") {
@@ -71,6 +71,7 @@ pipeline {
         }
       }
     } // end stage
+    */
 
     stage('Run Performance Test') {
       steps {
@@ -86,7 +87,7 @@ pipeline {
         }
       }
     }
-
+/* 
     stage('Send Test Stop to DT') {
       steps {
         container("curl") {
@@ -110,7 +111,7 @@ pipeline {
         }
       }
     } // end stage
-
+*/
     stage('Pipeline Quality Gate') {
       steps {
         script {
