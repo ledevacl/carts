@@ -60,15 +60,16 @@ pipeline {
       steps {
         container("curl") {
           script{
-            dynatrace.dynatracePushCustomInfoEvent(
+            dynatrace.dynatracePushCustomInfoEvent (
               title: "Test Start on ${env.KEPTN_PROJECT}/${env.KEPTN_SERVICE}", 
-              source: 'Jenkins', description: 'Starting load test.', 
+              source: 'Jenkins', 
+              description: 'Starting load test.', 
               tagRule: "${tagMatchRules}", 
               customProperties: [
                     "Test Type": "Load",
                     "Test Provider": "Jmeter",
                     "Test Parameters": "[vuCount: ${env.JMETER_VUCOUNT}] [loopCount: ${env.JMETER_LOOPCOUNT}]"
-                ]
+              ]
             )
           }
         }
