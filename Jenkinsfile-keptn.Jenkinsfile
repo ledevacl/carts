@@ -66,7 +66,7 @@ pipeline {
                 "Test Parameters": "[vuCount: ${env.JMETER_VUCOUNT}] [loopCount: ${env.JMETER_LOOPCOUNT}]"
             ];
             
-            dynatrace.dynatracePushCustomInfoEvent(title: "Test Start on ${env.KEPTN_PROJECT}/${env.KEPTN_SERVICE}", source: 'Jenkins', description: 'Starting load test.', tagRule: tagMatchRules, customProperties: customProps);
+            dynatrace.dynatracePushCustomInfoEvent title: "Test Start on ${env.KEPTN_PROJECT}/${env.KEPTN_SERVICE}", source: 'Jenkins', description: 'Starting load test.', tagRule: "${tagMatchRules}", customProperties: "${customProps}"
           }
         }
       }
