@@ -77,7 +77,7 @@ pipeline {
       steps {
         script{
           dynatrace.dynatracePushCustomInfoEvent (
-            title: "Test Start on ${env.KEPTN_PROJECT}/${env.KEPTN_SERVICE}", 
+            title: "Test Stop on ${env.KEPTN_PROJECT}/${env.KEPTN_SERVICE}", 
             source: 'Jenkins', 
             description: 'Starting load test.', 
             tagRule: tagMatchRules, 
