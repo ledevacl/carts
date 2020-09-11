@@ -11,8 +11,6 @@ def dynatracePushCustomInfoEvent(Map args) {
     String title = args.containsKey("title") ? args.title : ""
     def customProperties = args.containsKey("customProperties") ? args.customProperties : [ ]
 
-    def builder = new new JsonBuilder()
-
     // check minimum required params
     if ((dtTenantUrl == "") || (dtApiToken == "")) {
         echo "dynatracePushCustomInfoEvent requires dynatrace tenant URL/API token!"
@@ -37,7 +35,7 @@ def dynatracePushCustomInfoEvent(Map args) {
         "customProperties": "${customProperties}"
     }"""
 
-    builder.createEventBody = [
+    def createEventBody = [
         eventType: eventType,
         attachRules: [tagRule: tagRule],
         description: description,
