@@ -24,17 +24,6 @@ def dynatracePushCustomInfoEvent(Map args) {
 
     String eventType = "CUSTOM_INFO"
 
-    def createEventBodyTest = """{
-        "eventType": "${eventType}",
-        "attachRules": {
-            "tagRule": "${tagRule}"
-            },
-        "description: "${description}",
-        "title": "${title}",
-        "source": "${source}"
-        "customProperties": "${customProperties}"
-    }"""
-
     def createEventBody = new JsonBuilder()
     
     createEventBody (
@@ -45,8 +34,6 @@ def dynatracePushCustomInfoEvent(Map args) {
         customProperties: customProperties,
         source: source,
     )
-
-    //def postBody = new JsonOutput().toJson(createEventBody)
 
     def postBody = new JsonOutput().prettyPrint(createEventBody.toString())
 
