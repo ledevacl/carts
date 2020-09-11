@@ -24,9 +24,7 @@ def dynatracePushCustomInfoEvent(Map args) {
 
     String eventType = "CUSTOM_INFO"
 
-    def createEventBody = new JsonBuilder()
-    
-    createEventBody (
+    def createEventBody = new JsonBuilder(
         eventType: eventType,
         attachRules: [tagRule: tagRule],
         description: description,
