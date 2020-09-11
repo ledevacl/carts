@@ -44,7 +44,7 @@ def dynatracePushCustomInfoEvent(Map args) {
     def createEventResponse = httpRequest contentType: 'APPLICATION_JSON', 
         customHeaders: [[maskValue: true, name: 'Api-Token ', value: "${dtApiToken}"]], 
         httpMode: 'POST',
-        requestBody: postBody,
+        requestBody: createEventBody.toString(),
         responseHandle: 'STRING',
         url: "${dtTenantUrl}/api/v1/events",
         validResponseCodes: "200",
