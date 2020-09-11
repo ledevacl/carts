@@ -418,7 +418,7 @@ def writeKeptnContextFiles(response) {
     archiveArtifacts artifacts: getKeptnContextJsonFilename()
 
     // now we generate the HTML File that contains a clickable link
-    String keptn_bridge = env.KEPTN_BRIDGE
+    String keptn_bridge = "${KEPTN_BRIDGE}"
     def htmlContent = """<html>
     <head>
         <meta http-equiv="Refresh" content="0; url='${keptn_bridge}/trace/${keptnContext}'" />
