@@ -37,7 +37,7 @@ def dynatracePushCustomInfoEvent(Map args) {
 
     //def postBody = new JsonOutput().prettyPrint(createEventBody.toString())
 
-    postBody = new JsonOutput().toJson(createEventBody)
+    postBody = new JsonOutput().toJson(createEventBody.content)
 
     echo postBody
 
