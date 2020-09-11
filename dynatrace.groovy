@@ -37,7 +37,7 @@ def dynatracePushCustomInfoEvent(Map args) {
 
     def createEventBody = new JsonBuilder()
     
-    createEventBody = (
+    createEventBody (
         eventType: eventType,
         attachRules: [tagRule: tagRule],
         description: description,
