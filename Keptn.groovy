@@ -49,8 +49,8 @@ def keptnLoadFromInit(Map args) {
     }
 
     // add the keptn endpoint & token!
-    String keptn_endpoint = args.containsKey("keptn_endpoint") ? args.keptn_endpoint : “${KEPTN_ENDPOINT}”
-    String keptn_api_token = args.containsKey("keptn_api_token") ? args.keptn_api_token : “${KEPTN_API_TOKEN}”
+    String keptn_endpoint = args.containsKey("keptn_endpoint") ? args.keptn_endpoint : "${KEPTN_ENDPOINT}"   "${KEPTN_ENDPOINT}"
+    String keptn_api_token = args.containsKey("keptn_api_token") ? args.keptn_api_token : "${KEPTN_API_TOKEN}"
     keptnInitFileJson['keptn_endpoint'] = keptn_endpoint
     keptnInitFileJson['keptn_api_token'] = keptn_api_token
 
@@ -70,8 +70,8 @@ def keptnLoadFromInit(Map args) {
  * If monitoring is specified, e.g: dynatrace, prometheus a configure-monitoring event is sent for this project!
  */
 def keptnInit(Map args) {
-    String keptn_endpoint = args.containsKey("keptn_endpoint") ? args.keptn_endpoint : “${KEPTN_ENDPOINT}”
-    String keptn_api_token = args.containsKey("keptn_api_token") ? args.keptn_api_token : “${KEPTN_API_TOKEN}”
+    String keptn_endpoint = args.containsKey("keptn_endpoint") ? args.keptn_endpoint : "${KEPTN_ENDPOINT}"
+    String keptn_api_token = args.containsKey("keptn_api_token") ? args.keptn_api_token : "${KEPTN_API_TOKEN}"
 
     String project = args.containsKey("project") ? args.project : ""
     String stage = args.containsKey("stage") ? args.stage : ""
@@ -692,8 +692,8 @@ def sendDeploymentFinishedEvent(Map args) {
     def keptnInit = keptnLoadFromInit(args)
 
     /* String project, String stage, String service, String deploymentURI, String testStrategy */
-    String keptn_endpoint = args.containsKey("keptn_endpoint") ? args.keptn_endpoint : “${KEPTN_ENDPOINT}”
-    String keptn_api_token = args.containsKey("keptn_api_token") ? args.keptn_api_token : “${KEPTN_API_TOKEN}”
+    String keptn_endpoint = args.containsKey("keptn_endpoint") ? args.keptn_endpoint : "${KEPTN_ENDPOINT}"
+    String keptn_api_token = args.containsKey("keptn_api_token") ? args.keptn_api_token : "${KEPTN_API_TOKEN}"
 
     def labels = args.containsKey('labels') ? args.labels : [:]
 
@@ -757,8 +757,8 @@ def sendConfigurationChangedEvent(Map args) {
     def keptnInit = keptnLoadFromInit(args)
 
     /* String project, String stage, String service, String image, String tag */
-    String keptn_endpoint = args.containsKey("keptn_endpoint") ? args.keptn_endpoint : “${KEPTN_ENDPOINT}”
-    String keptn_api_token = args.containsKey("keptn_api_token") ? args.keptn_api_token : “${KEPTN_API_TOKEN}”
+    String keptn_endpoint = args.containsKey("keptn_endpoint") ? args.keptn_endpoint : "${KEPTN_ENDPOINT}"
+    String keptn_api_token = args.containsKey("keptn_api_token") ? args.keptn_api_token : "${KEPTN_API_TOKEN}"
 
     def labels = args.containsKey('labels') ? args.labels : [:]
 
