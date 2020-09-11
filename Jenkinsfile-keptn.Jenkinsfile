@@ -63,7 +63,7 @@ pipeline {
             title: "Test Start on ${env.KEPTN_PROJECT}/${env.KEPTN_SERVICE}", 
             source: 'Jenkins', 
             description: 'Starting load test.', 
-            tagRule: tagMatchRules", 
+            tagRule: tagMatchRules, 
             customProperties: [
                   "Test Type": "Load",
                   "Test Provider": "Jmeter",
