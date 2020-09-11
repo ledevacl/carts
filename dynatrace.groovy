@@ -38,10 +38,6 @@ def dynatracePushCustomInfoEvent(Map args) {
         source: source,
     ]
 
-    //def postBody = new JsonOutput().prettyPrint(createEventBody.toString())
-
-    //postBody = new JsonOutput().toJson(createEventBody.content)
-
     echo toJson(createEventBody)
 
     def createEventResponse = httpRequest contentType: 'APPLICATION_JSON', 

@@ -7,7 +7,7 @@ def keptn
 def dynatrace
 
 def tagMatchRules = [
-  [ meTypes: [[meType: 'SERVICE']],
+  [ meTypes: ['SERVICE'],
       tags : [[context: 'CONTEXTLESS', key: 'keptn_project', value: KEPTN_PROJECT],
               [context: 'CONTEXTLESS', key: 'keptn_service', value: KEPTN_SERVICE],
               [context: 'CONTEXTLESS', key: 'keptn_stage', value: KEPTN_STAGE]]
