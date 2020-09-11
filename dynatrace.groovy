@@ -22,27 +22,32 @@ def dynatracePushCustomInfoEvent(Map args) {
         return false;
     }
 
+    def toJson = {
+        input ->
+        groovy.json.JsonOutput.toJson(input)
+    }
+
     String eventType = "CUSTOM_INFO"
 
-    def createEventBody = new JsonBuilder(
+    def createEventBody [
         eventType: eventType,
         attachRules: [tagRule: tagRule],
         description: description,
         title: title,
         customProperties: customProperties,
         source: source,
-    )
+    ]
 
     //def postBody = new JsonOutput().prettyPrint(createEventBody.toString())
 
-    postBody = new JsonOutput().toJson(createEventBody.content)
+    //postBody = new JsonOutput().toJson(createEventBody.content)
 
-    echo postBody
+    echo toJson(createEventBody)
 
     def createEventResponse = httpRequest contentType: 'APPLICATION_JSON', 
         customHeaders: [[maskValue: true, name: 'Api-Token ', value: "${dtApiToken}"]], 
         httpMode: 'POST',
-        requestBody: createEventBody.toString(),
+        requestBody: toJson(createEventBody)
         responseHandle: 'STRING',
         url: "${dtTenantUrl}/api/v1/events",
         validResponseCodes: "200",
