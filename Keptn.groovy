@@ -49,7 +49,7 @@ def keptnLoadFromInit(Map args) {
     }
 
     // add the keptn endpoint & token!
-    String keptn_endpoint = args.containsKey("keptn_endpoint") ? args.keptn_endpoint : "${KEPTN_ENDPOINT}"   "${KEPTN_ENDPOINT}"
+    String keptn_endpoint = args.containsKey("keptn_endpoint") ? args.keptn_endpoint : "${KEPTN_ENDPOINT}"
     String keptn_api_token = args.containsKey("keptn_api_token") ? args.keptn_api_token : "${KEPTN_API_TOKEN}"
     keptnInitFileJson['keptn_endpoint'] = keptn_endpoint
     keptnInitFileJson['keptn_api_token'] = keptn_api_token
