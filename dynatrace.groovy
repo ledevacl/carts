@@ -53,6 +53,7 @@ def dynatracePushCustomInfoEvent(Map args) {
             echo "Custom info event posted successfully!"
         } else {
             echo "Failed To post event:" + createEventResponse.content
+            echo createEventResponse.requestBody
         }
 
     return true
