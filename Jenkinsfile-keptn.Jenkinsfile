@@ -64,13 +64,11 @@ pipeline {
             source: 'Jenkins', 
             description: 'Starting load test.', 
             tagRule: "${tagMatchRules}", 
-            customProperties: '''
-                              {
-                                "Test Type": "Load",
-                                "Test Provider": "Jmeter",
-                                "Test Parameters": "{vuCount: ${env.JMETER_VUCOUNT}} {loopCount: ${env.JMETER_LOOPCOUNT}}"
-                              }
-                              '''
+            customProperties: [
+                  "Test Type": "Load",
+                  "Test Provider": "Jmeter",
+                  "Test Parameters": "[vuCount: ${env.JMETER_VUCOUNT}] [loopCount: ${env.JMETER_LOOPCOUNT}]"
+            ]
           )
         }
       }
