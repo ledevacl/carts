@@ -63,7 +63,7 @@ def dynatracePushDeploymentEvent(Map args) {
     def tagRule = args.containsKey("tagRule") ? args.tagRule : [ ]
     String source = args.containsKey("source") ? args.source : "Jenkins"
     String deploymentName = args.containsKey("deploymentName") ? args.deploymentName : "${env.JOB_NAME}"
-    String deploymentVersion = args.containsKey("deploymentVersion") ? args.deploymentVersion : "${env.VERSION}"
+    String deploymentVersion = args.containsKey("deploymentVersion") ? args.deploymentVersion : "${env.BRANCH_NAME}"
     String deploymentProject = args.containsKey("deploymentProject") ? args.deploymentProject : ""
     String ciBackLink = args.containsKey("ciBackLink") ? args.ciBackLink : "${env.BUILD_URL}"
     String remediationAction = args.containsKey("remediationAction") ? args.remediationAction : "null"

@@ -60,12 +60,13 @@ pipeline {
       steps {
         script{
           dynatrace.dynatracePushDeploymentEvent (
-            tagRule: tagMatchRules, 
+            tagRule: tagMatchRules,
+            deploymentVersion: "${env.BRANCH_NAME}"
             customProperties: [
-                  "Jenkins Build Number": "${env.BUILD_ID}",
+                  "Jenkins Build Number": "${env.BUILD_NUMBER}",
                   "Git commit": "${env.GIT_COMMIT}",
                   "Last commit by": "${env.GIT_COMMITTER_NAME}",
-                  "Branch": "${env.GIT_BRANCH}",
+                  "Git Branch": "${env.GIT_BRANCH}",
                   "SCM": "${env.GIT_URL}"
             ]
           )
