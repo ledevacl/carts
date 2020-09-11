@@ -43,7 +43,7 @@ pipeline {
           dynatrace = load("dynatrace.groovy")
         }
       }
-    } 
+    } // end stage
 
     stage('Keptn Init') {
       steps{
@@ -54,7 +54,24 @@ pipeline {
           keptn.keptnAddResources("${KEPTN_DT_CONF}",'dynatrace/dynatrace.conf.yaml')          
         }
       }
-    }
+    } // end stage
+
+    stage('Send Deployment event to DT') {
+      steps {
+        script{
+          dynatrace.dynatracePushDeploymentEvent (
+            tagRule: tagMatchRules, 
+            customProperties: [
+                  "Jenkins Build Number": "${BUILD_ID}",
+                  "Git commit": "${GIT_COMMIT}",
+                  "Last commit by": "${GIT_COMMITTER_NAME}",
+                  "Branch": "${GIT_BRANCH}",
+                  "SCM": "${GIT_URL}"
+            ]
+          )
+        }
+      }
+    } // end stage
 
     stage('Send Test Start to DT') {
       steps {
@@ -87,32 +104,26 @@ pipeline {
           echo "Open Keptns Bridge: ${keptn_bridge}/trace/${keptnContext}"
         }
       }
-    }
-/* 
+    } // end stage
+
     stage('Send Test Stop to DT') {
       steps {
-        container("curl") {
-          script {
-      
-              def tagMatchRules = [[ meTypes: [[meType: 'SERVICE']],
-                                        tags : [[context: 'CONTEXTLESS', key: 'keptn_project', value: KEPTN_PROJECT],
-                                                [context: 'CONTEXTLESS', key: 'keptn_service', value: KEPTN_SERVICE],
-                                                [context: 'CONTEXTLESS', key: 'keptn_stage', value: KEPTN_STAGE]]
-                                  ]];
-              // Push some Jenkins OOTB info to DT.
-              def customProps = [ 
+        script{
+          dynatrace.dynatracePushCustomInfoEvent (
+            title: "Test Start on ${env.KEPTN_PROJECT}/${env.KEPTN_SERVICE}", 
+            source: 'Jenkins', 
+            description: 'Stopping load test.', 
+            tagRule: tagMatchRules, 
+            customProperties: [
                   "Test Type": "Load",
                   "Test Provider": "Jmeter",
                   "Test Parameters": "[vuCount: ${env.JMETER_VUCOUNT}] [loopCount: ${env.JMETER_LOOPCOUNT}]"
-              ];
-              
-              def notification = new pushDynatraceInfoEvent();
-              notification.call(title: "Test Stop on ${env.KEPTN_PROJECT}/${env.KEPTN_SERVICE}", source: 'Jenkins', description: 'Starting load test.', tagRule: tagMatchRules, customProperties: customProps);
-          }
+            ]
+          )
         }
       }
     } // end stage
-*/
+
     stage('Pipeline Quality Gate') {
       steps {
         script {

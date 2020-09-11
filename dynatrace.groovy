@@ -38,8 +38,6 @@ def dynatracePushCustomInfoEvent(Map args) {
         source: source,
     ]
 
-    echo toJson(createEventBody)
-
     def createEventResponse = httpRequest contentType: 'APPLICATION_JSON', 
         customHeaders: [[maskValue: true, name: 'Authorization', value: "Api-Token ${dtApiToken}"]], 
         httpMode: 'POST',
@@ -53,7 +51,6 @@ def dynatracePushCustomInfoEvent(Map args) {
             echo "Custom info event posted successfully!"
         } else {
             echo "Failed To post event:" + createEventResponse.content
-            echo createEventResponse.requestBody
         }
 
     return true
@@ -82,37 +79,40 @@ def dynatracePushDeployEvent(Map args) {
         return false;
     }
 
+    def toJson = {
+        input ->
+        groovy.json.JsonOutput.toJson(input)
+    }
+
     String eventType = "CUSTOM_DEPLOYMENT"
 
-    def createEventBody = """{
-        "eventType": "${eventType},
-        "attachRules": {
-            "tagRule": "${tagRule}"
-            },
-        "deploymentName": "${deploymentName}",
-        "deploymentVersion": "${deploymentVersion}",
-        "deploymentProject": "${deploymentProject}",
-        "ciBackLink": "${ciBackLink}",
-        "remediationAction": "${remediationAction}",
-        "source": "${source}"
-        "customProperties": "${customProperties}"
-    }"""
-
+    def createEventBody = [
+        eventType: eventType,
+        attachRules: [tagRule: tagRule],
+        deploymentName: deploymentName,
+        deploymentVersion: deploymentVersion,
+        deploymentProject: deploymentProject,
+        ciBackLink: ciBackLink,
+        remediationAction: remediationAction,
+        customProperties: customProperties,
+        source: source
+    ]
 
     def createEventResponse = httpRequest contentType: 'APPLICATION_JSON', 
-        customHeaders: [[maskValue: true, name: 'Api-Token ', value: "${dtApiToken}"]], 
+        customHeaders: [[maskValue: true, name: 'Authorization', value: "Api-Token ${dtApiToken}"]], 
         httpMode: 'POST',
-        requestBody: createEventBody,
+        requestBody: toJson(createEventBody),
         responseHandle: 'STRING',
         url: "${dtTenantUrl}/api/v1/events",
         validResponseCodes: "200",
         ignoreSslErrors: true
 
         if (createEventResponse.status == 200) {
-            echo "Deployment event posted successfully!"
+            echo "Custom info event posted successfully!"
         } else {
-            echo "Failed To post event:" + createEventResponse.content          
+            echo "Failed To post event:" + createEventResponse.content
         }
+
     return true
 
 }
