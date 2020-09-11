@@ -62,8 +62,8 @@ def dynatracePushDeploymentEvent(Map args) {
     String dtApiToken = args.containsKey("dtApiToken") ? args.dtApiToken : "${DT_API_TOKEN}"
     def tagRule = args.containsKey("tagRule") ? args.tagRule : [ ]
     String source = args.containsKey("source") ? args.source : "Jenkins"
-    String deploymentName = args.containsKey("deploymentName") ? args.deploymentName : "${env.JOB_NAME}"
-    String deploymentVersion = args.containsKey("deploymentVersion") ? args.deploymentVersion : "${env.VERSION}"
+    String deploymentName = args.containsKey("deploymentName") ? args.deploymentName : "${JOB_NAME}"
+    String deploymentVersion = args.containsKey("deploymentVersion") ? args.deploymentVersion : "${VERSION}"
     String deploymentProject = args.containsKey("deploymentProject") ? args.deploymentProject : ""
     String ciBackLink = args.containsKey("ciBackLink") ? args.ciBackLink : "${env.BUILD_URL}"
     String remediationAction = args.containsKey("remediationAction") ? args.remediationAction : "null"
@@ -108,7 +108,7 @@ def dynatracePushDeploymentEvent(Map args) {
         ignoreSslErrors: true
 
         if (createEventResponse.status == 200) {
-            echo "Custom info event posted successfully!"
+            echo "Deployment event posted successfully!"
         } else {
             echo "Failed To post event:" + createEventResponse.content
         }
