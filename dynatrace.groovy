@@ -35,7 +35,7 @@ def dynatracePushCustomInfoEvent(Map args) {
         "customProperties": "${customProperties}"
     }"""
 
-    def createEventBody = new JsonBuilder()
+    def createEventBody = new groovy.json.JsonBuilder()
     
     createEventBody (
         eventType: eventType,
@@ -46,7 +46,7 @@ def dynatracePushCustomInfoEvent(Map args) {
         source: source,
     )
 
-    def postBody = new JsonOutput().toJson(createEventBody)
+    def postBody = groovy.json.JsonOutput.toJson(createEventBody)
 
     //def postBody = new JsonBuilder(createEventBody).toPrettyString()
 
