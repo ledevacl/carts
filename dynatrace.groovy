@@ -29,7 +29,7 @@ def dynatracePushCustomInfoEvent(Map args) {
 
     String eventType = "CUSTOM_INFO"
 
-    def createEventBody [
+    def createEventBody = [
         eventType: eventType,
         attachRules: [tagRule: tagRule],
         description: description,
