@@ -35,18 +35,20 @@ def dynatracePushCustomInfoEvent(Map args) {
         "customProperties": "${customProperties}"
     }"""
 
-    def createEventBody = [
+    def builder = new JsonBuilder()
+    
+    builder = {
         eventType: eventType,
         attachRules: [tagRule: tagRule],
         description: description,
         title: title,
         customProperties: customProperties,
         source: source,
-    ]
+    }
 
-    def postBody = new JsonOutput().toJson(createEventBody)
+    //def postBody = new JsonOutput().toJson(createEventBody)
 
-    echo postBody
+    echo builder.toPrettyString()
 
     def createEventResponse = httpRequest contentType: 'APPLICATION_JSON', 
         customHeaders: [[maskValue: true, name: 'Api-Token ', value: "${dtApiToken}"]], 
