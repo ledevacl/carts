@@ -57,7 +57,7 @@ def dynatracePushCustomInfoEvent(Map args) {
 
 }
 
-def dynatracePushDeployEvent(Map args) {
+def dynatracePushDeploymentEvent(Map args) {
     String dtTenantUrl = args.containsKey("dtTenantUrl") ? args.dtTenantUrl : "${DT_TENANT_URL}"
     String dtApiToken = args.containsKey("dtApiToken") ? args.dtApiToken : "${DT_API_TOKEN}"
     def tagRule = args.containsKey("tagRule") ? args.tagRule : [ ]
