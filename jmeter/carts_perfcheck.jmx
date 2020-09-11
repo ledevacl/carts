@@ -88,7 +88,7 @@ if((LTN == null) || (LTN.length() == 0)) {
 		LTN = vars.get(&quot;DT_LTN&quot;);
 	}
 }
-if(LTN == null) LTN = &quot;NoTestName&quot;;
+if(LTN == null) LTN = ${__TestPlanName};
 
 String LSN = (bsh.args.length &gt; 0) ? bsh.args[0] : &quot;Test Scenario&quot;;
 String TSN = sampler.getName();
