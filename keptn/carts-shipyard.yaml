@@ -1,3 +1,4 @@
 stages:
   - name: "dev"
   - name: "staging"
+  - name: "qualitygate"
