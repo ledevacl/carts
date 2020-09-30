@@ -2,8 +2,8 @@ def keptn
 def dynatrace
 
 node('kubegit'){
-    JMETER_VU_COUNT = 1
-    JMETER_LOOP_COUNT = 5
+    JMETER_VUCOUNT = 1
+    JMETER_LOOPCOUNT = 5
 
     tagMatchRules = [
     [ meTypes: ['SERVICE'],
