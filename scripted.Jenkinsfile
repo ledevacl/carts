@@ -1,0 +1,4 @@
+node('kubegit'){
+    echo "test"
+
+}
