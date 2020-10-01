@@ -1,7 +1,7 @@
 ---
 spec_version: '0.1.0'
 dtCreds: dynatrace
-dashboard: 038ee64e-ad0f-43dc-9bb0-a967051e6f6f
+dashboard: 9874f2df-51d2-4e9d-97d1-3f64f45b7459
 attachRules:
   tagRule:
   - meTypes:
