@@ -60,19 +60,17 @@ node('kubegit'){
     }
 
     stage('Send Test Start to DT') {
-        script{
-            dynatrace.dynatracePushCustomInfoEvent (
-                title: "Test Stop on ${KEPTN_PROJECT}/${KEPTN_SERVICE}", 
-                source: 'Jenkins', 
-                description: 'Starting load test.', 
-                tagRule: tagMatchRules, 
-                customProperties: [
-                        "Test Type": "Load",
-                        "Test Provider": "Jmeter",
-                        "Test Parameters": "[vuCount: ${JMETER_VUCOUNT}] [loopCount: ${JMETER_LOOPCOUNT}]"
-                ]
-            )
-        }
+        dynatrace.dynatracePushCustomInfoEvent (
+            title: "Test Stop on ${KEPTN_PROJECT}/${KEPTN_SERVICE}", 
+            source: 'Jenkins', 
+            description: 'Starting load test.', 
+            tagRule: tagMatchRules, 
+            customProperties: [
+                    "Test Type": "Load",
+                    "Test Provider": "Jmeter",
+                    "Test Parameters": "[vuCount: ${JMETER_VUCOUNT}] [loopCount: ${JMETER_LOOPCOUNT}]"
+            ]
+        )
     }
 
     stage ('Run Performance Test') {
