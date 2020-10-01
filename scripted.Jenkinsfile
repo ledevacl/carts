@@ -76,7 +76,10 @@ node('kubegit'){
     }
 
     stage ('Run Performance Test') {
-        keptn.markEvaluationStartTime()
+        //keptn.markEvaluationStartTime()
+        def startlatestdate = new Date()
+        def tz = TimeZone.getTimeZone('UTC')
+        def startepochtime = startlatestdate.format("yyyy-MM-dd'T'HH:mm:ss.SSS", tz)
         if (params.RUN_LOADTEST){
             build job: "${params.LOAD_TEST_JOB}", wait:true
         }
@@ -84,7 +87,10 @@ node('kubegit'){
             echo 'Not running load tests'
             sleep 20
         }
-        def keptnContext = keptn.sendStartEvaluationEvent starttime:"", endtime:""
+        def endlatestdate = new Date()
+        def endepochtime = endlatestdate.format("yyyy-MM-dd'T'HH:mm:ss.SSS", tz)
+        def keptnContext = keptn.sendStartEvaluationEvent starttime:"${startepochtime}", endtime:"${endepochtime}"
+        //def keptnContext = keptn.sendStartEvaluationEvent starttime:"", endtime:""
         echo "Open Keptns Bridge: ${keptn_bridge}/trace/${keptnContext}"
     } // end stage
 
@@ -103,8 +109,8 @@ node('kubegit'){
     } 
 
     stage('Pipeline Quality Gate') {
-          def result = keptn.waitForEvaluationDoneEvent setBuildResult:true, waitTime:'3'
-          echo "EVALUATION RESULT: ${result}"
+        def result = keptn.waitForEvaluationDoneEvent setBuildResult:true, waitTime:'3'
+        echo "EVALUATION RESULT: ${result}"
     }
 
 } // END PIPELINE
