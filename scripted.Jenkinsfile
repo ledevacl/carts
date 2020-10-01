@@ -26,7 +26,7 @@ node('kubegit'){
         KEPTN_SHIPYARD = "${params.KEPTN_DIR}${params.KEPTN_SERVICE}-shipyard.yaml"
         KEPTN_SLI = "${params.KEPTN_DIR}${params.KEPTN_SERVICE}-sli.yaml"
         KEPTN_SLO = "${params.KEPTN_DIR}${params.KEPTN_SERVICE}-slo.yaml"
-        KEPTN_DT_CONF = "${params.KEPTN_DIR}/dynatrace.conf.yaml"
+        KEPTN_DT_CONF = "${params.KEPTN_DIR}dynatrace.conf.yaml"
         keptn.keptnInit keptn_endpoint:"${KEPTN_ENDPOINT}", keptn_api_token:"${KEPTN_API_TOKEN}", project:"${params.KEPTN_PROJECT}", service:"${params.KEPTN_SERVICE}", stage:"${params.KEPTN_STAGE}", monitoring:"${params.KEPTN_MONITORING}", shipyard: "${KEPTN_SHIPYARD}"
         keptn.keptnAddResources("${KEPTN_SLI}",'dynatrace/sli.yaml')
         keptn.keptnAddResources("${KEPTN_SLO}",'slo.yaml')
@@ -63,7 +63,7 @@ node('kubegit'){
         dynatrace.dynatracePushCustomInfoEvent (
             title: "Test Stop on ${KEPTN_PROJECT}/${KEPTN_SERVICE}", 
             source: 'Jenkins', 
-            description: 'Starting load test.', 
+            description: "Starting load test.", 
             tagRule: tagMatchRules, 
             customProperties: [
                     "Test Type": "Load",
@@ -90,13 +90,13 @@ node('kubegit'){
         def keptnContext = keptn.sendStartEvaluationEvent starttime:"${startepochtime}", endtime:"${endepochtime}"
         //def keptnContext = keptn.sendStartEvaluationEvent starttime:"", endtime:""
         echo "Open Keptns Bridge: ${keptn_bridge}/trace/${keptnContext}"
-    } // end stage
+    }
 
     stage('Send Test Stop to DT') {
         dynatrace.dynatracePushCustomInfoEvent (
             title: "Test Start on ${KEPTN_PROJECT}/${KEPTN_SERVICE}", 
-            source: 'Jenkins', 
-            description: 'Stopping load test.', 
+            source: "Jenkins", 
+            description: "Stopping load test.", 
             tagRule: tagMatchRules, 
             customProperties: [
                     "Test Type": "Load",
