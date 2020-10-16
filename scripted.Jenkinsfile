@@ -7,9 +7,9 @@ node('kubegit'){
 
     tagMatchRules = [
     [ meTypes: ['SERVICE'],
-        tags : [[context: 'CONTEXTLESS', key: 'keptn_project', value: KEPTN_PROJECT],
-                [context: 'CONTEXTLESS', key: 'keptn_service', value: KEPTN_SERVICE],
-                [context: 'CONTEXTLESS', key: 'keptn_stage', value: KEPTN_STAGE]]
+        tags : [[context: 'ENVIRONMENT', key: 'product', value: KEPTN_PROJECT],
+                [context: 'CONTEXTLESS', key: 'app', value: KEPTN_SERVICE],
+                [context: 'CONTEXTLESS', key: 'environment', value: KEPTN_STAGE]]
     ]];
 
     stage ('Checkout') {
