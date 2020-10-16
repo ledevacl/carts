@@ -36,7 +36,8 @@ node('kubegit'){
     stage ('Send Deployment event to DT') {
         dynatrace.dynatracePushDeploymentEvent (
             tagRule: tagMatchRules, 
-            deploymentVersion: "TAG_NAME_GOES_HERE",
+            deploymentVersion: "${env.BRANCH_NAME}",
+            deploymentProject: "${KEPTN_PROJECT}",
             customProperties: [
                 "Jenkins Build Number": "${env.BUILD_NUMBER}",
                     "Git commit": "${env.GIT_COMMIT}",
