@@ -1,6 +1,11 @@
 //package dynatrace
 import groovy.json.*
 
+toJson = {
+        input ->
+        groovy.json.JsonOutput.toJson(input)
+}
+
 def dynatracePushCustomInfoEvent(Map args) {
     // check input arguments
     String dtTenantUrl = args.containsKey("dtTenantUrl") ? args.dtTenantUrl : "${DT_TENANT_URL}"
@@ -20,11 +25,6 @@ def dynatracePushCustomInfoEvent(Map args) {
     if ((description == "") || (source == "")) {
         echo "dynatracePushCustomInfoEvent requires source and description to be set. These values cant be empty!"
         return false;
-    }
-
-    def toJson = {
-        input ->
-        groovy.json.JsonOutput.toJson(input)
     }
 
     String eventType = "CUSTOM_INFO"
@@ -79,11 +79,6 @@ def dynatracePushDeploymentEvent(Map args) {
         return false;
     }
 
-    def toJson = {
-        input ->
-        groovy.json.JsonOutput.toJson(input)
-    }
-
     String eventType = "CUSTOM_DEPLOYMENT"
 
     def createEventBody = [
@@ -97,8 +92,6 @@ def dynatracePushDeploymentEvent(Map args) {
         customProperties: customProperties,
         source: source
     ]
-
-    echo toJson(createEventBody)
 
     def createEventResponse = httpRequest contentType: 'APPLICATION_JSON', 
         customHeaders: [[maskValue: true, name: 'Authorization', value: "Api-Token ${dtApiToken}"]], 
